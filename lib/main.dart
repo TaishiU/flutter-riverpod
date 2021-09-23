@@ -29,6 +29,7 @@ class HomeScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final stringState = useProvider(stringStateProvider);
+    final count = useProvider(counterProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -36,18 +37,36 @@ class HomeScreen extends HookWidget {
         title: Text('HomeScreen'),
       ),
       body: Center(
-        child: Text(
-          stringState.state.toString(),
-          style: TextStyle(
-            fontSize: 40,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              count.toString(),
+              style: TextStyle(
+                fontSize: 50,
+              ),
+            ),
+            SizedBox(height: 60),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FloatingActionButton(
+                  child: Icon(Icons.remove),
+                  onPressed: () {
+                    context.read(counterProvider.notifier).decrement();
+                  },
+                ),
+                SizedBox(width: 30),
+                FloatingActionButton(
+                  child: Icon(Icons.add),
+                  onPressed: () {
+                    context.read(counterProvider.notifier).increment();
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          stringState.state = 'Go!!';
-        },
       ),
     );
   }

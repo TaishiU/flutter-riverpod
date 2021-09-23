@@ -1,4 +1,16 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final stringStateProvider = StateProvider((ref) => 'Hello world');
-final initStateProvider = StateProvider((ref) => 0);
+
+class Counter extends StateNotifier<int> {
+  Counter() : super(0);
+  void increment() {
+    this.state++;
+  }
+
+  void decrement() {
+    this.state--;
+  }
+}
+
+final counterProvider = StateNotifierProvider<Counter, int>((ref) => Counter());
