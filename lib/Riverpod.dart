@@ -14,3 +14,11 @@ class Counter extends StateNotifier<int> {
 }
 
 final counterProvider = StateNotifierProvider<Counter, int>((ref) => Counter());
+
+class TabPage extends StateNotifier<int> {
+  TabPage(int index) : super(index);
+  void update(int index) => state = index;
+}
+
+final tabPageProvider =
+    StateNotifierProvider<TabPage, int>((ref) => TabPage(0));
