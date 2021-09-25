@@ -9,7 +9,6 @@ class HomeScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stringState = useProvider(stringStateProvider);
     final count = useProvider(counterProvider);
 
     return Scaffold(
